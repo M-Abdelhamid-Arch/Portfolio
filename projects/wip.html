@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Work in Progress — Mohammad Abdelhamid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    .wip-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .wip-inner {
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .wip-code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .wip-code::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--color-text-muted);
+    }
+
+    .wip-heading {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: 1.5rem;
+    }
+
+    .wip-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--color-text-muted);
+    }
+
+    .wip-notice {
+      border-left: 2px solid var(--color-border);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+      background: var(--color-bg-alt);
+    }
+
+    .wip-notice p {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .wip-notice strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .wip-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .wip-meta-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .wip-meta-row span:first-child {
+      width: 120px;
+      opacity: 0.5;
+    }
+
+    .wip-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .wip-blink {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-text-muted);
+      margin-right: 0.5rem;
+      animation: blink 1.4s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.15; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-photo">
+        <img src="../img/profile.jpg" alt="Mohammad Abdelhamid">
+      </div>
+      <div class="sidebar-name">
+        <h1>Mohammad<br>Abdelhamid</h1>
+        <span class="sidebar-title">Architect · Designer · Visualizer</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html#about" class="nav-link">About</a>
+        <a href="../index.html#skills" class="nav-link">Skills</a>
+        <a href="../index.html#education" class="nav-link">Education</a>
+        <a href="../index.html#projects" class="nav-link active">Projects</a>
+        <a href="../index.html#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="sidebar-social">
+        <a href="mailto:M.Abdelhamid.Arch@gmail.com"><i class="bi bi-envelope"></i></a>
+        <a href="https://linkedin.com/in/m-abdelhamid-arch" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/M-Abdelhamid-Arch" target="_blank"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="wip-page">
+      <div class="wip-inner">
+
+        <div class="wip-code">
+          <span class="wip-blink"></span>
+          Status 503 — Temporarily Unavailable
+        </div>
+
+        <h1 class="wip-heading">
+          This page is still<br><em>under negotiation.</em>
+        </h1>
+
+        <div class="wip-notice">
+          <p>
+            <strong>Temporarily unavailable.</strong><br>
+            The contractor <em>(me)</em> is still negotiating with the designer <em>(also me)</em>.<br>
+            Talks are ongoing. Both parties are said to be unreasonable.
+          </p>
+        </div>
+
+        <div class="wip-meta">
+          <div class="wip-meta-row">
+            <span>Issued by</span>
+            <span>Mohammad Abdelhamid, Architect</span>
+          </div>
+          <div class="wip-meta-row">
+            <span>Root cause</span>
+            <span>Perfectionism, scope creep, and too many reference images</span>
+          </div>
+          <div class="wip-meta-row">
+            <span>ETA</span>
+            <span>When both parties agree. Do not hold your breath.</span>
+          </div>
+        </div>
+
+        <div class="wip-actions">
+          <a href="../index.html#projects" class="btn-outline">← Back to Projects</a>
+          <a href="../index.html#contact" class="btn-outline">Get in Touch</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-inner">
+      <span>© 2025 Mohammad Abdelhamid</span>
+      <span>Architect · Designer · Visualizer · Reggio Calabria</span>
+    </div>
+  </footer>
+
+</body>
+</html>
