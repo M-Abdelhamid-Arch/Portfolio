@@ -39,6 +39,14 @@
   </aside>
 
   <main id="main">
+
+    <!-- Collapsed sticky bar (fixed, slides in from top after hero scrolls away) -->
+    <div class="project-hero-bar" id="heroBar">
+      <span class="bar-tag">Urban · Thesis 2025</span>
+      <span class="bar-title">Al Qarafa</span>
+      <a href="../index.html#projects" class="bar-back">← Projects</a>
+    </div>
+
     <div class="project-hero">
       <img src="../img/projects/al-qarafa.jpg" alt="Al Qarafa">
       <div class="project-hero-overlay">
@@ -87,32 +95,35 @@
         </div>
       </div>
 
-      <!-- RIGHT: sticky slideshow -->
-      <div class="project-image-col">
-        <div class="project-slideshow" id="slideshow">
-          <div class="project-slide active"><a href="../img/projects/al-qarafa/al-qarafa-01.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-01.png" alt="Al Qarafa 01"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-02.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-02.png" alt="Al Qarafa 02"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-03.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-03.png" alt="Al Qarafa 03"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-04.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-04.png" alt="Al Qarafa 04"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-05.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-05.png" alt="Al Qarafa 05"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-06.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-06.png" alt="Al Qarafa 06"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-07.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-07.png" alt="Al Qarafa 07"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-08.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-08.png" alt="Al Qarafa 08"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-09.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-09.png" alt="Al Qarafa 09"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-10.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-10.png" alt="Al Qarafa 10"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-11.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-11.png" alt="Al Qarafa 11"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-12.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-12.png" alt="Al Qarafa 12"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-13.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-13.png" alt="Al Qarafa 13"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-14.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-14.png" alt="Al Qarafa 14"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-15.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-15.png" alt="Al Qarafa 15"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-16.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-16.png" alt="Al Qarafa 16"></a></div>
-          <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-17.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-17.png" alt="Al Qarafa 17"></a></div>
-          <div class="slide-dots" id="slideDots"></div>
-        </div>
-      </div>
+      <!-- RIGHT: invisible grid spacer — actual panel is .project-slideshow-fixed outside main -->
+      <div class="project-image-col" id="imageColSpacer"></div>
 
     </div>
   </main>
+
+  <!-- Fixed slideshow panel — positioned by JS to match the grid column -->
+  <div class="project-slideshow-fixed" id="slideshowFixed">
+    <div class="project-slideshow" id="slideshow">
+      <div class="project-slide active"><a href="../img/projects/al-qarafa/al-qarafa-01.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-01.png" alt="Al Qarafa 01"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-02.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-02.png" alt="Al Qarafa 02"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-03.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-03.png" alt="Al Qarafa 03"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-04.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-04.png" alt="Al Qarafa 04"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-05.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-05.png" alt="Al Qarafa 05"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-06.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-06.png" alt="Al Qarafa 06"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-07.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-07.png" alt="Al Qarafa 07"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-08.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-08.png" alt="Al Qarafa 08"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-09.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-09.png" alt="Al Qarafa 09"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-10.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-10.png" alt="Al Qarafa 10"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-11.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-11.png" alt="Al Qarafa 11"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-12.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-12.png" alt="Al Qarafa 12"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-13.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-13.png" alt="Al Qarafa 13"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-14.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-14.png" alt="Al Qarafa 14"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-15.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-15.png" alt="Al Qarafa 15"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-16.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-16.png" alt="Al Qarafa 16"></a></div>
+      <div class="project-slide"><a href="../img/projects/al-qarafa/al-qarafa-17.png" class="glightbox" data-gallery="al-qarafa"><img src="../img/projects/al-qarafa/al-qarafa-17.png" alt="Al Qarafa 17"></a></div>
+      <div class="slide-dots" id="slideDots"></div>
+    </div>
+  </div>
 
   <footer id="footer">
     <div class="footer-inner">
@@ -127,12 +138,12 @@
     AOS.init({ duration: 700, once: true });
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
 
-    const slides = document.querySelectorAll('.project-slide');
+    // ── Slideshow ──────────────────────────────────────────────
+    const slides       = document.querySelectorAll('.project-slide');
     const dotsContainer = document.getElementById('slideDots');
-    const textCol = document.querySelector('.project-text-col');
+    const textCol      = document.querySelector('.project-text-col');
     let current = 0, timer;
 
-    // Build dots
     slides.forEach((_, i) => {
       const d = document.createElement('button');
       d.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -147,24 +158,92 @@
       slides[current].classList.add('active');
       dotsContainer.children[current].classList.add('active');
     }
-
     function resetTimer() {
       clearInterval(timer);
       timer = setInterval(() => goTo(current + 1), 3500);
     }
 
-    // Drive slide changes from window scroll through the text column
-    window.addEventListener('scroll', () => {
-      const rect = textCol.getBoundingClientRect();
-      const colTop = textCol.offsetTop;
-      const scrolled = window.scrollY - colTop;
-      const scrollable = textCol.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) return;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-      const idx = Math.min(Math.floor(progress * slides.length), slides.length - 1);
-      if (idx !== current) { goTo(idx); resetTimer(); }
-    });
+    // ── Fixed panel — reads column rect, stays in sync with layout ──
+    const spacer      = document.getElementById('imageColSpacer');
+    const fixedPanel  = document.getElementById('slideshowFixed');
+    const heroEl      = document.querySelector('.project-hero');
+    const heroOverlay = document.querySelector('.project-hero-overlay');
+    const heroImg     = heroEl.querySelector('img');
+    const heroBar     = document.getElementById('heroBar');
+    const BAR_H       = 52;
 
+    // Store column bounds (recalc on resize)
+    let colLeft = 0, colWidth = 0;
+
+    function measureCol() {
+      const r   = spacer.getBoundingClientRect();
+      colLeft   = r.left + window.scrollX;  // absolute left
+      colWidth  = r.width;
+      fixedPanel.style.left  = r.left + 'px';
+      fixedPanel.style.width = r.width + 'px';
+    }
+
+    window.addEventListener('resize', measureCol);
+    // Wait for layout then measure
+    requestAnimationFrame(() => { measureCol(); tick(); });
+
+    // ── Main per-frame update ──────────────────────────────────
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) { requestAnimationFrame(tick); ticking = true; }
+    }
+
+    function easeOut(t) { return 1 - (1 - t) * (1 - t); }
+
+    function tick() {
+      const heroH   = heroEl.offsetHeight;
+      const scrollY = window.scrollY;
+
+      // hero scroll progress 0→1
+      const raw      = Math.min(1, Math.max(0, scrollY / heroH));
+      const progress = easeOut(raw);
+
+      // overlay fade + lift
+      const overlayP = Math.min(1, raw / 0.6);
+      heroOverlay.style.opacity   = 1 - overlayP;
+      heroOverlay.style.transform = `translateY(${-overlayP * 20}px)`;
+
+      // hero image dim
+      heroImg.style.opacity = 0.45 - progress * 0.2;
+
+      // bar slide-in 75%→100% of hero scroll (only when hero is nearly gone)
+      const barP    = Math.min(1, Math.max(0, (raw - 0.75) / 0.25));
+      const barEase = easeOut(barP);
+      heroBar.style.transform = `translateY(${(1 - barEase) * -100}%)`;
+      heroBar.style.opacity   = barEase;
+      heroBar.classList.toggle('active', barP > 0);
+
+      // ── Fixed panel:
+      //    - Always visible while project body is in view (natural position)
+      //    - top: 0 normally, snaps to BAR_H the moment bar is fully in
+      //    - Hides once you've scrolled past the content ──
+      const bodyBottom = textCol.offsetTop + textCol.offsetHeight;
+      const barFullyIn = barEase >= 0.99;
+      const inContent  = scrollY < bodyBottom;
+
+      fixedPanel.style.visibility = inContent ? 'visible' : 'hidden';
+      fixedPanel.style.top        = barFullyIn ? BAR_H + 'px' : '0px';
+      fixedPanel.style.height     = (window.innerHeight - (barFullyIn ? BAR_H : 0)) + 'px';
+
+      // slideshow scroll-drive
+      const scrolled   = scrollY - textCol.offsetTop;
+      const scrollable = textCol.offsetHeight - window.innerHeight;
+      if (scrollable > 0) {
+        const slideP = Math.max(0, Math.min(1, scrolled / scrollable));
+        const idx    = Math.min(Math.floor(slideP * slides.length), slides.length - 1);
+        if (idx !== current) { goTo(idx); resetTimer(); }
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     resetTimer();
   </script>
 </body>
