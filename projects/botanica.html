@@ -49,55 +49,49 @@
     </div>
 
     <div class="project-body">
-      <div class="project-meta" data-aos="fade-up">
-        <div class="meta-item"><span class="meta-label">Type</span><span>Heritage Restoration</span></div>
-        <div class="meta-item"><span class="meta-label">Location</span><span>Reggio Calabria, Italy</span></div>
-        <div class="meta-item"><span class="meta-label">Year</span><span>2024</span></div>
-        <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · Rhino · V-Ray · Photoshop</span></div>
-        <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
-      </div>
 
-      <div class="project-text" data-aos="fade-up" data-aos-delay="100">
-        <h2>Overview</h2>
-        <p>Botanica is a restoration and adaptive reuse project for an abandoned silk factory in Reggio Calabria, a building that once anchored the city's textile economy and now sits silent at the urban edge. The project asks what a ruin owes to the city that outlived it, and what new life it might offer in return.</p>
-        <p>Rather than erasing the factory's industrial character, the design preserves and celebrates it, keeping original masonry, cast iron columns, and saw-tooth skylights as legible traces of the building's past. New interventions are introduced in contrast: lightweight, transparent, and botanical.</p>
+      <div class="project-text-col">
+        <div class="project-meta" data-aos="fade-up">
+          <div class="meta-item"><span class="meta-label">Type</span><span>Heritage Restoration</span></div>
+          <div class="meta-item"><span class="meta-label">Location</span><span>Reggio Calabria, Italy</span></div>
+          <div class="meta-item"><span class="meta-label">Year</span><span>2024</span></div>
+          <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · Rhino · V-Ray · Photoshop</span></div>
+          <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
+        </div>
 
-        <h2>Concept</h2>
-        <p>The proposal transforms the factory into a layered public space, part botanical garden, part community greenhouse, part cultural venue. A continuous promenade threads through the building, connecting shaded courtyards, terraced planting beds, and a flexible event hall carved from the main production hall.</p>
-        <p>The spatial strategy is one of <em>coexistence</em>: old walls and new structure, ruin and growth, enclosure and openness. Light is the primary material, filtered through the restored skylights and canopy planting to create an ever-changing interior landscape.</p>
-      </div>
+        <div class="project-text" data-aos="fade-up" data-aos-delay="100">
+          <h2>Overview</h2>
+          <p>Botanica is a restoration and adaptive reuse project for an abandoned silk factory in Reggio Calabria, a building that once anchored the city's textile economy and now sits silent at the urban edge. The project asks what a ruin owes to the city that outlived it, and what new life it might offer in return.</p>
+          <p>Rather than erasing the factory's industrial character, the design preserves and celebrates it, keeping original masonry, cast iron columns, and saw-tooth skylights as legible traces of the building's past. New interventions are introduced in contrast: lightweight, transparent, and botanical.</p>
+          <h2>Concept</h2>
+          <p>The proposal transforms the factory into a layered public space, part botanical garden, part community greenhouse, part cultural venue. A continuous promenade threads through the building, connecting shaded courtyards, terraced planting beds, and a flexible event hall carved from the main production hall.</p>
+          <p>The spatial strategy is one of <em>coexistence</em>: old walls and new structure, ruin and growth, enclosure and openness. Light is the primary material, filtered through the restored skylights and canopy planting to create an ever-changing interior landscape.</p>
+        </div>
 
-      <!-- IMAGE GALLERY -->
-      <!-- To add images: copy the <a> block and update the src path -->
-      <div class="project-gallery" data-aos="fade-up" data-aos-delay="150">
-        <a href="../img/projects/botanica.jpg" class="glightbox" data-gallery="botanica">
-          <img src="../img/projects/botanica.jpg" alt="Botanica Overview">
-        </a>
-        <!-- Add more images below:
-        <a href="../img/projects/botanica-02.jpg" class="glightbox" data-gallery="botanica">
-          <img src="../img/projects/botanica-02.jpg" alt="Botanica Interior">
-        </a>
-        -->
-      </div>
-
-      <!-- PDF DOWNLOAD -->
-      <div class="project-download" data-aos="fade-up" data-aos-delay="200">
-        <div class="download-card">
-          <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-          <div class="download-text">
-            <span class="download-label">Project Documentation</span>
-            <span class="download-title">Botanica — Full Portfolio PDF</span>
+        <div class="project-download" data-aos="fade-up">
+          <div class="download-card">
+            <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+            <div class="download-text">
+              <span class="download-label">Project Documentation</span>
+              <span class="download-title">Botanica — Full Portfolio PDF</span>
+            </div>
+            <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
           </div>
-          <a href="wip.html" class="btn-outline">
-            <i class="bi bi-download"></i> Download PDF
-          </a>
+        </div>
+
+        <div class="project-nav">
+          <a href="../index.html#projects" class="btn-outline">← All Projects</a>
+          <a href="pelagia.html" class="btn-outline">Pelagia →</a>
         </div>
       </div>
 
-      <div class="project-nav">
-        <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-        <a href="pelagia.html" class="btn-outline">Pelagia →</a>
+      <div class="project-image-col">
+        <div class="project-slideshow" id="slideshow">
+          <div class="project-slide active"><a href="../img/projects/botanica.jpg" class="glightbox" data-gallery="botanica"><img src="../img/projects/botanica.jpg" alt="Botanica Overview"></a></div>
+          <div class="slide-dots" id="slideDots"></div>
+        </div>
       </div>
+
     </div>
   </main>
 
@@ -112,7 +106,37 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
-    GLightbox({ selector: '.glightbox' });
+    GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
+    const slides = document.querySelectorAll('.project-slide');
+    const dotsContainer = document.getElementById('slideDots');
+    const textCol = document.querySelector('.project-text-col');
+    let current = 0, timer;
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => { goTo(i); resetTimer(); });
+      dotsContainer.appendChild(d);
+    });
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dotsContainer.children[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dotsContainer.children[current].classList.add('active');
+    }
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 3500);
+    }
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY - textCol.offsetTop;
+      const scrollable = textCol.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+      const idx = Math.min(Math.floor(progress * slides.length), slides.length - 1);
+      if (idx !== current) { goTo(idx); resetTimer(); }
+    });
+    resetTimer();
   </script>
 </body>
 </html>

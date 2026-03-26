@@ -47,52 +47,46 @@
     </div>
 
     <div class="project-body">
-      <div class="project-meta" data-aos="fade-up">
-        <div class="meta-item"><span class="meta-label">Type</span><span>Hotel / Community</span></div>
-        <div class="meta-item"><span class="meta-label">Location</span><span>Heliopolis, Cairo</span></div>
-        <div class="meta-item"><span class="meta-label">Year</span><span>2023</span></div>
-        <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · AutoCAD · 3ds Max · Photoshop</span></div>
-        <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
-      </div>
 
-      <div class="project-text" data-aos="fade-up" data-aos-delay="100">
-        <h2>Overview</h2>
-        <p>Ezra is a 200+ guest hotel and community center situated adjacent to Cairo International Airport, at the threshold between the historic suburb of Heliopolis and the city's expanding airport district. The project was conceived as a civic anchor, a building that serves the traveller in transit while also belonging fully to the neighbourhood it inhabits.</p>
-        <p>The brief called for an integration of hospitality and community programming, a condition that shaped every aspect of the design, from the organisation of the ground floor to the distribution of shared amenities across the building's vertical section.</p>
-
-        <h2>Organisation</h2>
-        <p>The ground floor is entirely public, an open arcade leads to a community hall, co-working space, and market stalls accessible to Heliopolis residents regardless of whether they are guests of the hotel. Above, a planted podium separates the public base from the private hotel tower, creating a rooftop amenity level shared between both programmes.</p>
-        <p>The facade draws from Heliopolis's early twentieth-century architectural heritage, arched openings, projecting balconies, and a masonry base, reinterpreted through a contemporary lens that reads as familiar without being imitative.</p>
-      </div>
-
-      <div class="project-gallery" data-aos="fade-up" data-aos-delay="150">
-        <a href="../img/projects/ezra.jpg" class="glightbox" data-gallery="ezra">
-          <img src="../img/projects/ezra.jpg" alt="Ezra Hotel Overview">
-        </a>
-        <!-- Add more images below:
-        <a href="../img/projects/ezra-02.jpg" class="glightbox" data-gallery="ezra">
-          <img src="../img/projects/ezra-02.jpg" alt="Ezra Hotel Interior">
-        </a>
-        -->
-      </div>
-
-      <div class="project-download" data-aos="fade-up" data-aos-delay="200">
-        <div class="download-card">
-          <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-          <div class="download-text">
-            <span class="download-label">Project Documentation</span>
-            <span class="download-title">Ezra Hotel — Full Portfolio PDF</span>
+      <div class="project-text-col">
+        <div class="project-meta" data-aos="fade-up">
+          <div class="meta-item"><span class="meta-label">Type</span><span>Hotel / Community</span></div>
+          <div class="meta-item"><span class="meta-label">Location</span><span>Heliopolis, Cairo</span></div>
+          <div class="meta-item"><span class="meta-label">Year</span><span>2023</span></div>
+          <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · AutoCAD · 3ds Max · Photoshop</span></div>
+          <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
+        </div>
+        <div class="project-text" data-aos="fade-up" data-aos-delay="100">
+          <h2>Overview</h2>
+          <p>Ezra is a 200+ guest hotel and community center situated adjacent to Cairo International Airport, at the threshold between the historic suburb of Heliopolis and the city's expanding airport district. The project was conceived as a civic anchor, serving the traveller in transit while also belonging fully to the neighbourhood it inhabits.</p>
+          <p>The brief called for an integration of hospitality and community programming, a condition that shaped every aspect of the design.</p>
+          <h2>Organisation</h2>
+          <p>The ground floor is entirely public — an open arcade leads to a community hall, co-working space, and market stalls accessible to Heliopolis residents regardless of whether they are guests of the hotel. Above, a planted podium separates the public base from the private hotel tower.</p>
+          <p>The facade draws from Heliopolis's early twentieth-century architectural heritage — arched openings, projecting balconies, and a masonry base — reinterpreted through a contemporary lens.</p>
+        </div>
+        <div class="project-download" data-aos="fade-up">
+          <div class="download-card">
+            <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+            <div class="download-text">
+              <span class="download-label">Project Documentation</span>
+              <span class="download-title">Ezra Hotel — Full Portfolio PDF</span>
+            </div>
+            <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
           </div>
-          <a href="wip.html" class="btn-outline">
-            <i class="bi bi-download"></i> Download PDF
-          </a>
+        </div>
+        <div class="project-nav">
+          <a href="../index.html#projects" class="btn-outline">← All Projects</a>
+          <a href="hadana.html" class="btn-outline">Hadana Kindergarten →</a>
         </div>
       </div>
 
-      <div class="project-nav">
-        <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-        <a href="hadana.html" class="btn-outline">Hadana Kindergarten →</a>
+      <div class="project-image-col">
+        <div class="project-slideshow" id="slideshow">
+          <div class="project-slide active"><a href="../img/projects/ezra.jpg" class="glightbox" data-gallery="ezra"><img src="../img/projects/ezra.jpg" alt="Ezra Hotel Overview"></a></div>
+          <div class="slide-dots" id="slideDots"></div>
+        </div>
       </div>
+
     </div>
   </main>
 
@@ -107,7 +101,32 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
-    GLightbox({ selector: '.glightbox' });
+    GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
+    const slides = document.querySelectorAll('.project-slide');
+    const dotsContainer = document.getElementById('slideDots');
+    const textCol = document.querySelector('.project-text-col');
+    let current = 0, timer;
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => { goTo(i); resetTimer(); });
+      dotsContainer.appendChild(d);
+    });
+    function goTo(n) {
+      slides[current].classList.remove('active'); dotsContainer.children[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active'); dotsContainer.children[current].classList.add('active');
+    }
+    function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 3500); }
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY - textCol.offsetTop;
+      const scrollable = textCol.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+      const idx = Math.min(Math.floor(progress * slides.length), slides.length - 1);
+      if (idx !== current) { goTo(idx); resetTimer(); }
+    });
+    resetTimer();
   </script>
 </body>
 </html>

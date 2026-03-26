@@ -5,6 +5,7 @@
   height: 60vh;
   overflow: hidden;
   background: #111;
+  width: 100%;
 }
 
 .project-hero img {
@@ -46,19 +47,97 @@
   font-style: italic;
 }
 
+/* === SPLIT LAYOUT: 2:1 text to image === */
 .project-body {
-  padding: 5rem;
-  max-width: 860px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
 }
 
+/* Left: normal page scroll, text flows naturally */
+.project-text-col {
+  padding: 4rem 3rem 4rem 5rem;
+  box-sizing: border-box;
+}
+
+/* Right: sticky, height matches text column via stretch */
+.project-image-col {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  align-self: start;
+}
+
+/* Slideshow fills the sticky panel */
+.project-slideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Each slide: absolute, top-left, fades left edge into text column */
+.project-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);
+  mask-image: linear-gradient(to left, black 60%, transparent 100%);
+}
+
+.project-slide.active {
+  opacity: 1;
+}
+
+/* Image: anchored right top, cropped from the left (fade side) */
+.project-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  filter: grayscale(10%);
+  display: block;
+}
+
+/* Dots */
+.slide-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.slide-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.slide-dot.active {
+  background: rgba(0,0,0,0.7);
+}
+
+/* === TEXT COLUMN CONTENT === */
 .project-meta {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
   padding: 1.75rem 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .meta-item {
@@ -82,7 +161,7 @@
 }
 
 .project-text {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .project-text h2 {
@@ -109,37 +188,6 @@
   font-style: italic;
 }
 
-.project-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  margin-bottom: 4rem;
-}
-
-.project-gallery a {
-  display: block;
-  overflow: hidden;
-  aspect-ratio: 4/3;
-  background: var(--color-bg-alt);
-}
-
-.project-gallery a:first-child:only-child {
-  grid-column: 1 / -1;
-  aspect-ratio: 16/9;
-}
-
-.project-gallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  filter: grayscale(15%);
-}
-
-.project-gallery a:hover img {
-  transform: scale(1.02);
-}
-
 .project-nav {
   display: flex;
   gap: 0.75rem;
@@ -147,17 +195,9 @@
   border-top: 1px solid var(--color-border);
 }
 
-@media (max-width: 900px) {
-  .project-hero-overlay { left: 1.75rem; bottom: 2rem; }
-  .project-body { padding: 3rem 1.75rem; }
-  .project-meta { grid-template-columns: 1fr 1fr; }
-  .project-gallery { grid-template-columns: 1fr; }
-}
-
 /* === PDF DOWNLOAD CARD === */
-
 .project-download {
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .download-card {
@@ -203,10 +243,30 @@
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-  .download-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+/* === RESPONSIVE === */
+@media (max-width: 1100px) {
+  .project-body { grid-template-columns: 2fr 1fr; }
+  .project-text-col { padding: 3rem 2rem 3rem 3rem; }
+}
+
+@media (max-width: 900px) {
+  .project-hero-overlay { left: 1.75rem; bottom: 2rem; }
+  .project-body { grid-template-columns: 1fr; }
+  .project-image-col {
+    position: relative;
+    height: 60vw;
+    top: auto;
+    order: -1;
   }
+  .project-text-col {
+    padding: 2.5rem 1.75rem;
+  }
+  .project-slide {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .download-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
