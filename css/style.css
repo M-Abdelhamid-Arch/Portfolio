@@ -130,8 +130,7 @@ body {
 #main {
   margin-left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
-  overflow-x: hidden;
-  overflow-y: visible;
+  /* overflow-x must stay visible so position:sticky works on child columns */
 }
 
 /* === SECTIONS === */

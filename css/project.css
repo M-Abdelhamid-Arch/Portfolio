@@ -1,17 +1,31 @@
 /* === PROJECT DETAIL PAGE === */
 
-/* Full-height hero block — occupies its natural space in the document flow */
+/* ── Scroll architecture ──────────────────────────────────────
+   .project-scroller  — tall div that owns page height (set by JS)
+   Everything visible is position:fixed, driven purely by scrollY  */
+
+.project-scroller { position: relative; }
+
+/* ── Hero — morphs into title bar as you scroll ────────────────
+   At scrollY=0      : full hero (60vh tall, image visible, big title)
+   At scrollY=heroH  : compact bar (52px tall, image gone, small title)
+   Height, padding, font-sizes all lerped by JS between these two states */
 .project-hero {
-  position: relative;
-  height: 60vh;
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: 60vh;        /* JS morphs this to 52px */
   overflow: hidden;
   background: #111;
-  width: 100%;
-  will-change: transform;
+  z-index: 100;
+  will-change: height;
 }
 
-/* The hero image — JS-driven opacity, no CSS transition */
-.project-hero img {
+/* Background image — fades out as hero collapses */
+.project-hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -20,13 +34,14 @@
   will-change: opacity;
 }
 
-/* Full hero text overlay — all motion driven by JS, no CSS transition */
+/* Big overlay content — fades out early */
 .project-hero-overlay {
   position: absolute;
   bottom: 3rem;
   left: 5rem;
-  color: #ffffff;
+  color: #fff;
   will-change: opacity, transform;
+  pointer-events: none;
 }
 
 .project-hero-tag {
@@ -53,36 +68,19 @@
   font-style: italic;
 }
 
-/* ---- Collapsed sticky bar ----
-   No CSS transitions — all motion is driven frame-by-frame from JS.
-   GPU-composited only: transform + opacity. */
+/* Compact bar content — fades in late, always at vertical center of hero */
 .project-hero-bar {
-  position: fixed;
-  top: 0;
-  left: var(--sidebar-width);
-  right: 0;
-  height: 52px;
-  background: #111;
-  z-index: 200;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   align-items: center;
   padding: 0 5rem;
-  will-change: transform, opacity;
-  transform: translateY(-100%);
-  opacity: 0;
+  opacity: 0;           /* JS drives this 0→1 */
+  will-change: opacity;
   pointer-events: none;
 }
 
-.project-hero-bar.active {
-  pointer-events: auto;
-}
-
-@media (max-width: 900px) {
-  .project-hero-bar {
-    left: 0;
-    padding: 0 1.75rem;
-  }
-}
+.project-hero-bar.active { pointer-events: auto; }
 
 .project-hero-bar .bar-tag {
   font-size: 0.6rem;
@@ -95,8 +93,7 @@
 .project-hero-bar .bar-title {
   font-size: 0.82rem;
   font-weight: 500;
-  color: #ffffff;
-  letter-spacing: 0.01em;
+  color: #fff;
 }
 
 .project-hero-bar .bar-back {
@@ -109,106 +106,78 @@
   transition: color 0.2s ease;
 }
 
-.project-hero-bar .bar-back:hover {
-  color: #ffffff;
-}
+.project-hero-bar .bar-back:hover { color: #fff; }
 
-/* === SPLIT LAYOUT: 2:1 text to image === */
+/* ── Body panel — fixed, sits below the morphing hero ──────────
+   Its top is driven by JS to match hero's current height        */
 .project-body {
+  position: fixed;
+  top: 60vh;
+  left: var(--sidebar-width);
+  right: 0;
+  bottom: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  align-items: stretch;
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
+  overflow: hidden;
+  will-change: top, transform;
+  z-index: 2;
+  background: var(--color-bg);
 }
 
-/* Left: normal page scroll, text flows naturally */
 .project-text-col {
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 4rem 3rem 4rem 5rem;
   box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.project-text-col::-webkit-scrollbar { display: none; }
 
-/* Right column: invisible spacer that holds the grid slot.
-   The actual visible panel is .project-slideshow-fixed (position:fixed). */
 .project-image-col {
   position: relative;
-  height: 100vh;
-  align-self: start;
-  visibility: hidden; /* holds space, renders nothing */
-}
-
-/* Fixed slideshow panel — sized+positioned by JS to match the column rect */
-.project-slideshow-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100vh;
   overflow: hidden;
   background: var(--color-bg-alt);
-  z-index: 10;
-  will-change: top, height;
-  visibility: visible;
 }
 
-/* Slideshow fills the sticky panel */
-.project-slideshow {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+/* ── Slideshow ─────────────────────────────────────────────── */
+.project-slideshow { position: relative; width: 100%; height: 100%; }
 
-/* Each slide — fades right edge only (subtle), image anchored left */
 .project-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.7s ease;
-  -webkit-mask-image: linear-gradient(to right, black 75%, transparent 100%);
-  mask-image: linear-gradient(to right, black 75%, transparent 100%);
+  transition: opacity 0.6s ease;
+  -webkit-mask-image: linear-gradient(to left, black 75%, transparent 100%);
+  mask-image: linear-gradient(to left, black 75%, transparent 100%);
 }
+.project-slide.active { opacity: 1; }
 
-.project-slide.active {
-  opacity: 1;
-}
-
-/* Image: anchored left, fills panel */
 .project-slide img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   object-position: left top;
   filter: grayscale(10%);
   display: block;
 }
 
-/* Dots */
 .slide-dots {
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  display: flex;
-  gap: 0.5rem;
+  bottom: 1.5rem; left: 1.5rem;
+  display: flex; gap: 0.5rem;
   z-index: 10;
 }
-
 .slide-dot {
-  width: 5px;
-  height: 5px;
+  width: 5px; height: 5px;
   border-radius: 50%;
   background: rgba(0,0,0,0.25);
-  border: none;
-  cursor: pointer;
+  border: none; cursor: pointer;
   transition: background 0.3s ease;
   padding: 0;
 }
+.slide-dot.active { background: rgba(0,0,0,0.7); }
 
-.slide-dot.active {
-  background: rgba(0,0,0,0.7);
-}
-
-/* === TEXT COLUMN CONTENT === */
+/* ── Text content ──────────────────────────────────────────── */
 .project-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -218,139 +187,70 @@
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 3rem;
 }
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
+.meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
 .meta-label {
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--color-text-muted);
 }
-
 .meta-item span:not(.meta-label) {
-  font-size: 0.82rem;
-  color: var(--color-text);
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: 0.82rem; color: var(--color-text);
+  font-weight: 500; line-height: 1.4;
 }
-
-.project-text {
-  margin-bottom: 3rem;
-}
-
+.project-text { margin-bottom: 3rem; }
 .project-text h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 1rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--color-text-muted);
-  margin-bottom: 0.85rem;
-  margin-top: 2.5rem;
+  margin-bottom: 0.85rem; margin-top: 2.5rem;
 }
-
 .project-text h2:first-child { margin-top: 0; }
-
 .project-text p {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.85;
-  margin-bottom: 0.9rem;
+  font-size: 0.9rem; color: var(--color-text-muted);
+  line-height: 1.85; margin-bottom: 0.9rem;
 }
-
-.project-text em {
-  color: var(--color-text);
-  font-style: italic;
-}
-
+.project-text em { color: var(--color-text); font-style: italic; }
 .project-nav {
-  display: flex;
-  gap: 0.75rem;
+  display: flex; gap: 0.75rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-border);
 }
 
-/* === PDF DOWNLOAD CARD === */
-.project-download {
-  margin-bottom: 2.5rem;
-}
-
+/* ── Download card ─────────────────────────────────────────── */
+.project-download { margin-bottom: 2.5rem; }
 .download-card {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem;
   padding: 1.5rem 2rem;
   border: 1px solid var(--color-border);
   background: var(--color-bg-alt);
 }
-
-.download-icon {
-  font-size: 1.75rem;
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-}
-
-.download-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
+.download-icon { font-size: 1.75rem; color: var(--color-text-muted); flex-shrink: 0; }
+.download-text { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
 .download-label {
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--color-text-muted);
 }
-
-.download-title {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--color-text);
-}
-
+.download-title { font-size: 0.88rem; font-weight: 500; color: var(--color-text); }
 .download-card .btn-outline {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  white-space: nowrap;
+  flex-shrink: 0; display: flex; align-items: center;
+  gap: 0.4rem; white-space: nowrap;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 1100px) {
-  .project-body { grid-template-columns: 2fr 1fr; }
-  .project-text-col { padding: 3rem 2rem 3rem 3rem; }
-}
-
+/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .project-hero { left: 0; position: relative; height: 60vh !important; }
+  .project-hero-bar { padding: 0 1.75rem; }
   .project-hero-overlay { left: 1.75rem; bottom: 2rem; }
-  .project-body { grid-template-columns: 1fr; }
-  .project-image-col {
-    display: none; /* spacer not needed on mobile */
-  }
-  .project-slideshow-fixed {
+  .project-body {
     position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: 60vw;
-    visibility: visible;
+    top: auto !important; left: 0; right: auto; bottom: auto;
+    grid-template-columns: 1fr;
+    opacity: 1 !important; overflow: visible;
   }
-  .project-text-col {
-    padding: 2.5rem 1.75rem;
-  }
-  .project-slide {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
+  .project-text-col { overflow: visible; padding: 2.5rem 1.75rem; }
+  .project-image-col { height: 60vw; }
+  .project-slide { -webkit-mask-image: none; mask-image: none; }
+  .project-scroller { height: auto !important; }
 }
-
 @media (max-width: 600px) {
   .download-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
 }
