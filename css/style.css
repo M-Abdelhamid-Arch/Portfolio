@@ -526,7 +526,7 @@ section {
   border-color: #ffffff;
 }
 
-.project-info { padding: 1rem 0 0.5rem; }
+.project-info { padding: 1rem 0.75rem 0.75rem; }
 
 .project-tag {
   font-size: 0.62rem;
