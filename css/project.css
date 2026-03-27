@@ -1,21 +1,22 @@
 /* === PROJECT DETAIL PAGE === */
 
 /* ── Scroll architecture ──────────────────────────────────────
-   .project-scroller  — tall div that owns page height (set by JS)
-   Everything visible is position:fixed, driven purely by scrollY  */
+   Single window scroll only. No inner scroll containers.
+   .project-scroller  — tall div that sets page height (JS)
+   .project-hero      — position:fixed, collapses via JS
+   .project-body      — position:fixed, driven by JS
+   .project-text-col  — overflow:visible (NO inner scrollbar)
+   The window scroll is the only scroll on the page.         */
 
 .project-scroller { position: relative; }
 
-/* ── Hero — morphs into title bar as you scroll ────────────────
-   At scrollY=0      : full hero (60vh tall, image visible, big title)
-   At scrollY=heroH  : compact bar (52px tall, image gone, small title)
-   Height, padding, font-sizes all lerped by JS between these two states */
+/* ── Hero ──────────────────────────────────────────────────── */
 .project-hero {
   position: fixed;
   top: 0;
   left: var(--sidebar-width);
   right: 0;
-  height: 60vh;        /* JS morphs this to 52px */
+  height: 60vh;
   overflow: hidden;
   background: #111;
   z-index: 100;
@@ -34,7 +35,7 @@
   will-change: opacity;
 }
 
-/* Big overlay content — fades out early */
+/* Big overlay — fades out as hero collapses */
 .project-hero-overlay {
   position: absolute;
   bottom: 3rem;
@@ -68,14 +69,14 @@
   font-style: italic;
 }
 
-/* Compact bar content — fades in late, always at vertical center of hero */
+/* Compact bar — fades in as hero collapses */
 .project-hero-bar {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
   align-items: center;
   padding: 0 5rem;
-  opacity: 0;           /* JS drives this 0→1 */
+  opacity: 0;
   will-change: opacity;
   pointer-events: none;
 }
@@ -108,8 +109,9 @@
 
 .project-hero-bar .bar-back:hover { color: #fff; }
 
-/* ── Body panel — fixed, sits below the morphing hero ──────────
-   Its top is driven by JS to match hero's current height        */
+/* ── Body panel — fixed, sits below the morphing hero ────────
+   top is driven by JS to match hero's current height.
+   overflow:hidden on the panel itself (not on children).    */
 .project-body {
   position: fixed;
   top: 60vh;
@@ -118,22 +120,23 @@
   bottom: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  overflow: hidden;
-  will-change: top, transform;
+  overflow: hidden;           /* clips the panel edges only */
+  will-change: top;
   z-index: 2;
   background: var(--color-bg);
 }
 
+/* Text column — NO overflow-y, NO inner scrollbar.
+   Content is taller than the panel; the window scroll
+   drives a translateY via JS so it feels like scrolling. */
 .project-text-col {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
   padding: 4rem 3rem 4rem 5rem;
   box-sizing: border-box;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  will-change: transform;
 }
-.project-text-col::-webkit-scrollbar { display: none; }
 
+/* Image column — fills its grid cell, no inner scroll */
 .project-image-col {
   position: relative;
   overflow: hidden;
@@ -244,9 +247,13 @@
     position: relative !important;
     top: auto !important; left: 0; right: auto; bottom: auto;
     grid-template-columns: 1fr;
-    opacity: 1 !important; overflow: visible;
+    overflow: visible;
   }
-  .project-text-col { overflow: visible; padding: 2.5rem 1.75rem; }
+  .project-text-col {
+    overflow: visible;
+    padding: 2.5rem 1.75rem;
+    transform: none !important;   /* disable JS translateY on mobile */
+  }
   .project-image-col { height: 60vw; }
   .project-slide { -webkit-mask-image: none; mask-image: none; }
   .project-scroller { height: auto !important; }

@@ -133,18 +133,18 @@
   <script>
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
 
-    // ── Elements ───────────────────────────────────────────────
     const hero     = document.getElementById('projectHero');
     const heroImg  = hero.querySelector('.project-hero-img');
     const overlay  = document.getElementById('heroOverlay');
     const bar      = document.getElementById('heroBar');
     const body     = document.getElementById('projectBody');
     const scroller = document.getElementById('projectScroller');
+    const textCol  = document.querySelector('.project-text-col');
     const slides   = document.querySelectorAll('.project-slide');
     const dots     = document.getElementById('slideDots');
 
-    const BAR_H      = 52;   // final collapsed height in px
-    const SLIDE_VH   = 0.6;  // scroll distance per slide, as fraction of vh
+    const BAR_H    = 52;
+    const SLIDE_VH = 0.6;
 
     // ── Dots ──────────────────────────────────────────────────
     let current = 0;
@@ -162,54 +162,54 @@
       dots.children[current].classList.add('active');
     }
 
-    // ── Cached layout ─────────────────────────────────────────
-    let heroH0, slideScrollH, scrollerH;
-    function setup() {
-      const vh  = window.innerHeight;
-      heroH0    = vh * 0.6;                         // full hero height in px
-      slideScrollH = SLIDE_VH * vh;
-      scrollerH = heroH0 + slides.length * slideScrollH;
-      scroller.style.height = scrollerH + 'px';
-    }
-
-    // ── lerp helper ───────────────────────────────────────────
     function lerp(a, b, t) { return a + (b - a) * t; }
     function clamp01(x)    { return Math.min(1, Math.max(0, x)); }
 
-    // ── Single tick — everything is f(scrollY) ─────────────────
+    let heroH0, textH, panelH, slideScrollH, scrollerH;
+    function setup() {
+      const vh     = window.innerHeight;
+      heroH0       = vh * 0.6;
+      panelH       = vh - BAR_H;                 // height of body panel
+      textH        = textCol.scrollHeight;        // natural height of text
+      slideScrollH = SLIDE_VH * vh;
+      // total scroll = hero collapse + text scroll + slide scroll
+      scrollerH    = heroH0 + Math.max(0, textH - panelH) + slides.length * slideScrollH;
+      scroller.style.height = scrollerH + 'px';
+    }
+
     function tick() {
       const s = window.scrollY;
-
-      // p = 0 at top, 1 when hero is fully collapsed to bar
       const p = clamp01(s / heroH0);
 
-      // Hero height: lerps from heroH0 → BAR_H
+      // Hero: collapse height
       const h = lerp(heroH0, BAR_H, p);
       hero.style.height = h + 'px';
 
-      // Background image: fades out in first 70% of collapse
+      // Hero image fades out first 70%
       heroImg.style.opacity = lerp(0.45, 0, clamp01(p / 0.7));
 
-      // Big overlay: fades + lifts out in first 50%
+      // Big overlay fades + lifts out first 50%
       const op = clamp01(p / 0.5);
       overlay.style.opacity   = 1 - op;
       overlay.style.transform = `translateY(${-op * 20}px)`;
 
-      // Compact bar: fades in from 60% → 100%
+      // Compact bar fades in 60%→100%
       const bp = clamp01((p - 0.6) / 0.4);
       bar.style.opacity = bp;
       bar.classList.toggle('active', bp > 0);
 
-      // Body panel: top = hero height minus the slide-up offset,
-      // so the visual top edge is always flush against the hero bottom.
-      const bodyP      = clamp01((p - 0.5) / 0.5);
-      const bodyOffset = lerp(60, 0, bodyP);
-      body.style.top       = (h - bodyOffset) + 'px';
-      body.style.opacity   = '1';
-      body.style.transform = 'none';
+      // Body panel: top tracks hero height
+      body.style.top = h + 'px';
 
-      // Slides: driven by scroll past the hero collapse point
-      const slideScroll = Math.max(0, s - heroH0);
+      // Text column: translateY scrolls content inside the fixed panel
+      // starts moving once hero is fully collapsed
+      const textScroll  = Math.max(0, s - heroH0);
+      const maxTextScroll = Math.max(0, textH - panelH);
+      const ty = Math.min(textScroll, maxTextScroll);
+      textCol.style.transform = `translateY(${-ty}px)`;
+
+      // Slides: advance after text is fully scrolled
+      const slideScroll = Math.max(0, s - heroH0 - maxTextScroll);
       const idx = Math.min(Math.floor(slideScroll / slideScrollH), slides.length - 1);
       if (idx !== current) goTo(idx);
 

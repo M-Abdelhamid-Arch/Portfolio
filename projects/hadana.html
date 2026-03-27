@@ -7,7 +7,6 @@
   <meta name="description" content="Hadana Kindergarten — a courtyard kindergarten in Heliopolis, Cairo designed around light and play.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet">
   <link href="../css/project.css" rel="stylesheet">
@@ -37,58 +36,62 @@
   </aside>
 
   <main id="main">
-    <div class="project-hero">
-      <img src="../img/projects/hadana.jpg" alt="Hadana Kindergarten">
-      <div class="project-hero-overlay">
+    <div class="project-hero" id="projectHero">
+      <img class="project-hero-img" src="../img/projects/hadana.jpg" alt="Hadana Kindergarten">
+      <div class="project-hero-overlay" id="heroOverlay">
         <span class="project-hero-tag">Educational · 2022</span>
         <h1>Hadana Kindergarten</h1>
         <p>A Place Where Every Morning Begins in Sunlight</p>
       </div>
+      <div class="project-hero-bar" id="heroBar">
+        <span class="bar-tag">Educational · 2022</span>
+        <span class="bar-title">Hadana Kindergarten</span>
+        <a href="../index.html#projects" class="bar-back">← Projects</a>
+      </div>
     </div>
 
-    <div class="project-body">
-
-      <div class="project-text-col">
-        <div class="project-meta" data-aos="fade-up">
-          <div class="meta-item"><span class="meta-label">Type</span><span>Educational</span></div>
-          <div class="meta-item"><span class="meta-label">Location</span><span>Heliopolis, Cairo</span></div>
-          <div class="meta-item"><span class="meta-label">Year</span><span>2022</span></div>
-          <div class="meta-item"><span class="meta-label">Tools</span><span>AutoCAD · Rhino · Photoshop · InDesign</span></div>
-          <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
-        </div>
-        <div class="project-text" data-aos="fade-up" data-aos-delay="100">
-          <h2>Overview</h2>
-          <p>Hadana is a kindergarten in Heliopolis, Cairo, organised around a central shaded courtyard. The design is driven by a single clear principle: every classroom receives direct morning sunlight. In Cairo's climate, morning light is a precious and gentle resource — the right time for learning, for gathering, for being outside.</p>
-          <p>The building is arranged as a U-shape opening to the east, with classrooms lining the inner courtyard face and service and circulation spaces forming the outer shell.</p>
-          <h2>Design Principles</h2>
-          <p>Scale was a primary consideration throughout. Every dimension was calibrated to a child's body and field of view. The building is low, open, and legible: a child arriving for the first time should be able to understand where everything is without needing to be told.</p>
-          <p>The palette is simple and warm — exposed concrete, timber ceilings, ceramic tile floors in quiet earth tones. Colour is introduced through furnishings and planting rather than applied to surfaces.</p>
-        </div>
-        <div class="project-download" data-aos="fade-up">
-          <div class="download-card">
-            <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-            <div class="download-text">
-              <span class="download-label">Project Documentation</span>
-              <span class="download-title">Hadana Kindergarten — Full Portfolio PDF</span>
+    <div class="project-scroller" id="projectScroller">
+      <div class="project-body" id="projectBody">
+        <div class="project-text-col">
+          <div class="project-meta">
+            <div class="meta-item"><span class="meta-label">Type</span><span>Educational</span></div>
+            <div class="meta-item"><span class="meta-label">Location</span><span>Heliopolis, Cairo</span></div>
+            <div class="meta-item"><span class="meta-label">Year</span><span>2022</span></div>
+            <div class="meta-item"><span class="meta-label">Tools</span><span>AutoCAD · Rhino · Photoshop · InDesign</span></div>
+            <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
+          </div>
+          <div class="project-text">
+            <h2>Overview</h2>
+            <p>Hadana is a kindergarten in Heliopolis, Cairo, organised around a central shaded courtyard. The design is driven by a single clear principle: every classroom receives direct morning sunlight. In Cairo's climate, morning light is a precious and gentle resource — the right time for learning, for gathering, for being outside.</p>
+            <p>The building is arranged as a U-shape opening to the east, with classrooms lining the inner courtyard face and service and circulation spaces forming the outer shell.</p>
+            <h2>Design Principles</h2>
+            <p>Scale was a primary consideration throughout. Every dimension was calibrated to a child's body and field of view. The building is low, open, and legible: a child arriving for the first time should be able to understand where everything is without needing to be told.</p>
+            <p>The palette is simple and warm — exposed concrete, timber ceilings, ceramic tile floors in quiet earth tones. Colour is introduced through furnishings and planting rather than applied to surfaces.</p>
+          </div>
+          <div class="project-download">
+            <div class="download-card">
+              <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+              <div class="download-text">
+                <span class="download-label">Project Documentation</span>
+                <span class="download-title">Hadana Kindergarten — Full Portfolio PDF</span>
+              </div>
+              <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
             </div>
-            <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
+          </div>
+          <div class="project-nav">
+            <a href="../index.html#projects" class="btn-outline">← All Projects</a>
+            <a href="al-qarafa.html" class="btn-outline">Al Qarafa →</a>
           </div>
         </div>
-        <div class="project-nav">
-          <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-          <a href="al-qarafa.html" class="btn-outline">Al Qarafa →</a>
+        <div class="project-image-col">
+          <div class="project-slideshow" id="slideshow">
+            <div class="project-slide active"><a href="../img/projects/hadana/Interior Shot1.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Interior Shot1.png" alt="Hadana Interior 1"></a></div>
+            <div class="project-slide"><a href="../img/projects/hadana/Interior Shot2.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Interior Shot2.png" alt="Hadana Interior 2"></a></div>
+            <div class="project-slide"><a href="../img/projects/hadana/Plan.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Plan.png" alt="Hadana Plan"></a></div>
+            <div class="slide-dots" id="slideDots"></div>
+          </div>
         </div>
       </div>
-
-      <div class="project-image-col">
-        <div class="project-slideshow" id="slideshow">
-          <div class="project-slide active"><a href="../img/projects/hadana/Interior Shot1.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Interior Shot1.png" alt="Hadana Interior 1"></a></div>
-          <div class="project-slide"><a href="../img/projects/hadana/Interior Shot2.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Interior Shot2.png" alt="Hadana Interior 2"></a></div>
-          <div class="project-slide"><a href="../img/projects/hadana/Plan.png" class="glightbox" data-gallery="hadana"><img src="../img/projects/hadana/Plan.png" alt="Hadana Plan"></a></div>
-          <div class="slide-dots" id="slideDots"></div>
-        </div>
-      </div>
-
     </div>
   </main>
 
@@ -99,46 +102,65 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    AOS.init({ duration: 700, once: true });
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
-    const slides = document.querySelectorAll('.project-slide');
-    const dotsContainer = document.getElementById('slideDots');
-    const textCol = document.querySelector('.project-text-col');
-    let current = 0, timer;
+    const hero     = document.getElementById('projectHero');
+    const heroImg  = hero.querySelector('.project-hero-img');
+    const overlay  = document.getElementById('heroOverlay');
+    const bar      = document.getElementById('heroBar');
+    const body     = document.getElementById('projectBody');
+    const scroller = document.getElementById('projectScroller');
+    const textCol  = document.querySelector('.project-text-col');
+    const slides   = document.querySelectorAll('.project-slide');
+    const dots     = document.getElementById('slideDots');
+    const BAR_H    = 52;
+    const SLIDE_VH = 0.6;
+    let current = 0;
     slides.forEach((_, i) => {
       const d = document.createElement('button');
       d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', () => { goTo(i); resetTimer(); });
-      dotsContainer.appendChild(d);
+      d.addEventListener('click', () => goTo(i));
+      dots.appendChild(d);
     });
     function goTo(n) {
-      slides[current].classList.remove('active'); dotsContainer.children[current].classList.remove('active');
+      slides[current].classList.remove('active'); dots.children[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
-      slides[current].classList.add('active'); dotsContainer.children[current].classList.add('active');
+      slides[current].classList.add('active'); dots.children[current].classList.add('active');
     }
-    function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 3500); }
-    let textColTop = 0, textColH = 0;
-    function measureLayout() { textColTop = textCol.offsetTop; textColH = textCol.offsetHeight; }
-    requestAnimationFrame(() => { measureLayout(); });
-    window.addEventListener('load', measureLayout);
-    window.addEventListener('resize', measureLayout);
-    let ticking = false;
-    function onScroll() { if (!ticking) { requestAnimationFrame(scrollTick); ticking = true; } }
-    function scrollTick() {
-      const scrolled = window.scrollY - textColTop;
-      const scrollable = textColH - window.innerHeight;
-      if (scrollable > 0) {
-        const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-        const idx = Math.min(Math.floor(progress * slides.length), slides.length - 1);
-        if (idx !== current) { goTo(idx); resetTimer(); }
-      }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function clamp01(x)    { return Math.min(1, Math.max(0, x)); }
+    let heroH0, textH, panelH, slideScrollH;
+    function setup() {
+      const vh = window.innerHeight;
+      heroH0 = vh * 0.6; panelH = vh - BAR_H;
+      textH = textCol.scrollHeight; slideScrollH = SLIDE_VH * vh;
+      scroller.style.height = (heroH0 + Math.max(0, textH - panelH) + slides.length * slideScrollH) + 'px';
+    }
+    function tick() {
+      const s = window.scrollY;
+      const p = clamp01(s / heroH0);
+      const h = lerp(heroH0, BAR_H, p);
+      hero.style.height = h + 'px';
+      heroImg.style.opacity = lerp(0.45, 0, clamp01(p / 0.7));
+      const op = clamp01(p / 0.5);
+      overlay.style.opacity = 1 - op;
+      overlay.style.transform = `translateY(${-op * 20}px)`;
+      const bp = clamp01((p - 0.6) / 0.4);
+      bar.style.opacity = bp; bar.classList.toggle('active', bp > 0);
+      const bodyOffset = lerp(60, 0, clamp01((p - 0.5) / 0.5));
+      body.style.top = (h - bodyOffset) + 'px';
+      const maxTY = Math.max(0, textH - panelH);
+      textCol.style.transform = `translateY(${-Math.min(Math.max(0, s - heroH0), maxTY)}px)`;
+      const idx = Math.min(Math.floor(Math.max(0, s - heroH0 - maxTY) / slideScrollH), slides.length - 1);
+      if (idx !== current) goTo(idx);
       ticking = false;
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    resetTimer();
+    let ticking = false;
+    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(tick); ticking = true; } }, { passive: true });
+    window.addEventListener('resize', () => { setup(); tick(); });
+    window.addEventListener('load',   () => { setup(); tick(); });
+    requestAnimationFrame(() => { setup(); tick(); });
   </script>
 </body>
 </html>
