@@ -37,7 +37,7 @@
 
   <main id="main">
     <div class="project-hero" id="projectHero">
-      <img class="project-hero-img" src="../img/projects/ezra.jpg" alt="Ezra Hotel">
+      <img class="project-hero-img" src="../img/projects/Ezra.png" alt="Ezra Hotel">
       <div class="project-hero-overlay" id="heroOverlay">
         <span class="project-hero-tag">Hospitality · 2023</span>
         <h1>Ezra Hotel &amp; Community Center</h1>
@@ -85,7 +85,7 @@
         </div>
         <div class="project-image-col">
           <div class="project-slideshow" id="slideshow">
-            <div class="project-slide active"><a href="../img/projects/ezra.jpg" class="glightbox" data-gallery="ezra"><img src="../img/projects/ezra.jpg" alt="Ezra Hotel Overview"></a></div>
+            <div class="project-slide active"><a href="../img/projects/Ezra.png" class="glightbox" data-gallery="ezra"><img src="../img/projects/Ezra.png" alt="Ezra Hotel Overview"></a></div>
             <div class="slide-dots" id="slideDots"></div>
           </div>
         </div>
@@ -103,17 +103,19 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
-    const hero     = document.getElementById('projectHero');
-    const heroImg  = hero.querySelector('.project-hero-img');
-    const overlay  = document.getElementById('heroOverlay');
-    const bar      = document.getElementById('heroBar');
-    const body     = document.getElementById('projectBody');
-    const scroller = document.getElementById('projectScroller');
+    const hero    = document.getElementById('projectHero');
+    const heroImg = hero.querySelector('.project-hero-img');
+    const overlay = document.getElementById('heroOverlay');
+    const bar     = document.getElementById('heroBar');
     const textCol  = document.querySelector('.project-text-col');
-    const slides   = document.querySelectorAll('.project-slide');
-    const dots     = document.getElementById('slideDots');
-    const BAR_H    = 52;
-    const SLIDE_VH = 0.6;
+    const slideshow = document.getElementById('slideshow');
+    const slides  = document.querySelectorAll('.project-slide');
+    const dots    = document.getElementById('slideDots');
+    const HERO_H0 = window.innerHeight * 0.6;
+    const BAR_H   = 52;
+    const COLLAPSE = HERO_H0 - BAR_H;
+    textCol.style.paddingTop = HERO_H0 + 'px';
+    slideshow.style.top      = HERO_H0 + 'px';
     let current = 0;
     slides.forEach((_, i) => {
       const d = document.createElement('button');
@@ -128,37 +130,28 @@
     }
     function lerp(a, b, t) { return a + (b - a) * t; }
     function clamp01(x)    { return Math.min(1, Math.max(0, x)); }
-    let heroH0, textH, panelH, slideScrollH;
-    function setup() {
-      const vh = window.innerHeight;
-      heroH0 = vh * 0.6; panelH = vh - BAR_H;
-      textH = textCol.scrollHeight; slideScrollH = SLIDE_VH * vh;
-      scroller.style.height = (heroH0 + Math.max(0, textH - panelH) + slides.length * slideScrollH) + 'px';
-    }
-    function tick() {
-      const s = window.scrollY;
-      const p = clamp01(s / heroH0);
-      const h = lerp(heroH0, BAR_H, p);
-      hero.style.height = h + 'px';
-      heroImg.style.opacity = lerp(0.45, 0, clamp01(p / 0.7));
+    function onTextScroll() {
+      const s = textCol.scrollTop;
+      const p = clamp01(s / COLLAPSE);
+      const h = lerp(HERO_H0, BAR_H, p);
+      hero.style.height        = h + 'px';
+      textCol.style.paddingTop = h + 'px';
+      slideshow.style.top      = h + 'px';
+      heroImg.style.opacity    = lerp(0.45, 0, clamp01(p / 0.7));
       const op = clamp01(p / 0.5);
-      overlay.style.opacity = 1 - op;
+      overlay.style.opacity   = 1 - op;
       overlay.style.transform = `translateY(${-op * 20}px)`;
       const bp = clamp01((p - 0.6) / 0.4);
       bar.style.opacity = bp; bar.classList.toggle('active', bp > 0);
-      const bodyOffset = lerp(60, 0, clamp01((p - 0.5) / 0.5));
-      body.style.top = (h - bodyOffset) + 'px';
-      const maxTY = Math.max(0, textH - panelH);
-      textCol.style.transform = `translateY(${-Math.min(Math.max(0, s - heroH0), maxTY)}px)`;
-      const idx = Math.min(Math.floor(Math.max(0, s - heroH0 - maxTY) / slideScrollH), slides.length - 1);
-      if (idx !== current) goTo(idx);
-      ticking = false;
+      if (slides.length > 1) {
+        const maxScroll = textCol.scrollHeight - textCol.clientHeight;
+        const sp = maxScroll > COLLAPSE ? clamp01((s - COLLAPSE) / (maxScroll - COLLAPSE)) : 0;
+        const idx = Math.min(Math.floor(sp * slides.length), slides.length - 1);
+        if (idx !== current) goTo(idx);
+      }
     }
-    let ticking = false;
-    window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(tick); ticking = true; } }, { passive: true });
-    window.addEventListener('resize', () => { setup(); tick(); });
-    window.addEventListener('load',   () => { setup(); tick(); });
-    requestAnimationFrame(() => { setup(); tick(); });
+    textCol.addEventListener('scroll', onTextScroll, { passive: true });
+    onTextScroll();
   </script>
 </body>
 </html>
