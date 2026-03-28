@@ -96,13 +96,11 @@ const form = document.getElementById('contactForm');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Sent!';
-    btn.style.background = '#6b8f6b';
-    setTimeout(() => {
-      btn.textContent = 'Send Message';
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
+    const name    = form.querySelector('#name').value.trim();
+    const email   = form.querySelector('#email').value.trim();
+    const subject = form.querySelector('#subject').value.trim();
+    const message = form.querySelector('#message').value.trim();
+    const body    = `From: ${name} <${email}>\n\n${message}`;
+    window.location.href = `mailto:M.Abdelhamid.Arch@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }

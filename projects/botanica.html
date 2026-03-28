@@ -58,21 +58,23 @@
           <span class="project-text-spacer" id="textSpacer"></span>
           <div class="project-meta">
             <div class="meta-item"><span class="meta-label">Type</span><span>Heritage Restoration</span></div>
-            <div class="meta-item"><span class="meta-label">Location</span><span>Reggio Calabria, Italy</span></div>
+            <div class="meta-item"><span class="meta-label">Location</span><span>Villa San Giovanni, Italy</span></div>
             <div class="meta-item"><span class="meta-label">Year</span><span>2024</span></div>
-            <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · Rhino · V-Ray · Photoshop</span></div>
+            <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · Rhino · V-Ray · Photoshop · InDesign</span></div>
             <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
+            <div class="meta-item"><span class="meta-label">Team</span><span>Mohammad Ibrahim · Mohammad Salman · Reem Heiba · Wafaa Mohammad · Lina Elsayed · Mahy Elrahawan</span></div>
+            <div class="meta-item"><span class="meta-label">Supervisor</span><span>Nino Sulfaro · Università Mediterranea</span></div>
           </div>
           <div class="project-text">
             <h2>Overview</h2>
-            <p>Botanica is a restoration and adaptive reuse project for an abandoned silk factory in Reggio Calabria, a building that once anchored the city's textile economy and now sits silent at the urban edge. The project asks what a ruin owes to the city that outlived it, and what new life it might offer in return.</p>
-            <p>Rather than erasing the factory's industrial character, the design preserves and celebrates it, keeping original masonry, cast iron columns, and saw-tooth skylights as legible traces of the building's past. New interventions are introduced in contrast: lightweight, transparent, and botanical.</p>
+            <p>Botanica is a technical restoration project for a decommissioned silk factory in Villa San Giovanni — a building that once supported the regional textile economy and has since fallen into neglect and structural decay. The project's central focus is architectural methodology: understanding degradation, documenting existing conditions, and designing interventions that preserve the original structure rather than replacing it.</p>
+            <p>The work demanded rigorous technical engagement — reading the building's pathologies material by material, identifying compromised structural elements, and proposing phased restoration strategies that respect the spatial and material logic of what already exists. The factory's cast iron columns, saw-tooth skylights, and masonry walls are not backdrop; they are the project.</p>
             <h2>Concept</h2>
-            <p>The proposal transforms the factory into a layered public space, part botanical garden, part community greenhouse, part cultural venue. A continuous promenade threads through the building, connecting shaded courtyards, terraced planting beds, and a flexible event hall carved from the main production hall.</p>
-            <p>The spatial strategy is one of <em>coexistence</em>: old walls and new structure, ruin and growth, enclosure and openness. Light is the primary material, filtered through the restored skylights and canopy planting to create an ever-changing interior landscape.</p>
+            <p>New interventions are introduced in careful contrast: lightweight structures thread through preserved masonry, contemporary glazing sits alongside original ironwork, and botanical programming fills the voids left by the factory's industrial past. The proposal transforms the building into a layered public space — part botanical garden, part cultural venue, part community greenhouse — while keeping the factory's industrial history fully legible.</p>
+            <p>The spatial strategy is one of <em>coexistence</em>: old fabric and new structure, ruin and growth, enclosure and openness. Light remains the primary material, filtered through restored skylights and a canopy of planting to create an interior landscape that changes with the seasons.</p>
           </div>
           <div class="project-footer">
-            <span>© 2025 Mohammad Abdelhamid</span>
+            <span>© 2026 Mohammad Abdelhamid</span>
             <span>Architect · Designer · Visualizer · Reggio Calabria</span>
           </div>
         </div>
@@ -99,13 +101,26 @@
 
   <footer id="footer">
     <div class="footer-inner">
-      <span>© 2025 Mohammad Abdelhamid</span>
+      <span>© 2026 Mohammad Abdelhamid</span>
       <span>Architect · Designer · Visualizer · Reggio Calabria</span>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
+    (function() {
+      const btn = document.createElement('button');
+      btn.id = 'menu-toggle';
+      btn.innerHTML = '<i class="bi bi-list"></i>';
+      btn.style.cssText = 'display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:#111110;color:#f0ece4;border:none;padding:0.6rem 0.8rem;font-size:1.2rem;cursor:pointer;';
+      document.body.appendChild(btn);
+      const sidebar = document.getElementById('sidebar');
+      function update() { btn.style.display = window.innerWidth <= 900 ? 'block' : 'none'; }
+      update();
+      window.addEventListener('resize', update);
+      btn.addEventListener('click', () => sidebar.classList.toggle('open'));
+      document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => { if (window.innerWidth <= 900) sidebar.classList.remove('open'); }));
+    })();
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
     const hero     = document.getElementById('projectHero');
     const heroImg  = hero.querySelector('.project-hero-img');

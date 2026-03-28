@@ -71,18 +71,20 @@
             <div class="meta-item"><span class="meta-label">Location</span><span>Cairo, Egypt</span></div>
             <div class="meta-item"><span class="meta-label">Year</span><span>2025</span></div>
             <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · AutoCAD · Rhino · Photoshop · InDesign</span></div>
-            <div class="meta-item"><span class="meta-label">Status</span><span>Graduation Thesis</span></div>
+            <div class="meta-item"><span class="meta-label">Status</span><span>Graduation Thesis · 110/110 cum laude</span></div>
+            <div class="meta-item"><span class="meta-label">Co-author</span><span>Lina Elsayed</span></div>
+            <div class="meta-item"><span class="meta-label">Supervisors</span><span>Marina Tornatora · Francesca Schepis · Otavio Amaro · Wegdan Faydullah</span></div>
           </div>
           <div class="project-text">
             <h2>Overview</h2>
-            <p>Al Qarafa is a historic cemetery from the age of Al Fustat, established as a UNESCO heritage site due to its exceptional architectural and cultural significance. Over time, as economic stability declined, people began inhabiting the necropolis, improvising roofs, walls, and living spaces within the tombs, giving it the name <em>City of the Dead</em>.</p>
-            <p>Due to overwhelming population pressure and infrastructure expansion, the government began relocating graves and demolishing ancient landmarks, threatening irreplaceable heritage.</p>
-            <h2>Strategy</h2>
-            <p>The thesis proposes a <em>needle approach</em> to urban restoration: identifying all significant remaining heritage sites and weaving a continuous pathway that exposes visitors to the area's rich history and architectural diversity. The route culminates in a co-living solution for residents, designed to coexist with the graves and grievers without displacing either.</p>
-            <p>Separating the living and the dead within the same urban fabric creates a unique spatial contrast, demonstrating how architecture can serve not only the living, but also honor memory and connect past, present, and future.</p>
+            <p>Al-Qarafa — the City of the Dead — is one of Cairo's oldest inhabited cemeteries, a UNESCO-recognized urban fabric that has sheltered both the dead and the living for centuries. Established during the age of Al-Fustat, it holds layers of Islamic architectural heritage of exceptional historical and spiritual significance.</p>
+            <p>Over decades of state neglect and aggressive infrastructure expansion, government authorities have demolished cemetery walls, displaced graves, and erased irreplaceable monuments. Simultaneously, economic collapse has pushed thousands of Cairo's poorest residents to occupy the tomb enclosures — building improvised roofs and walls over burial sites, turning them into homes. The result is a city of contradiction: heritage and habitation, memory and necessity, living side by side in a place the state would rather not see.</p>
+            <h2>Intervention — Al-Qasaba</h2>
+            <p>The thesis proposes <em>Al-Qasaba</em> — an urban strategy that refuses the logic of erasure or displacement. Al-Qasaba threads a continuous public route through the necropolis, connecting five nodes of concentrated historic and architectural value: clusters of significant mosques, mausoleums, and monuments, each made accessible and legible through careful restoration and curated public space. The route creates a new form of urban awareness, allowing the city to rediscover a heritage it has been systematically destroying.</p>
+            <p>The sixth intervention is residential: a co-living typology designed specifically for the current inhabitants of Al-Qarafa. Rather than forcing residents out, the proposal offers an alternative — a dignified way of living that respects the sacred nature of the site and acknowledges the reality of those who have made it their home. The living and the dead continue to share the same urban fabric, but on terms that honour both.</p>
           </div>
           <div class="project-footer">
-            <span>© 2025 Mohammad Abdelhamid</span>
+            <span>© 2026 Mohammad Abdelhamid</span>
             <span>Architect · Designer · Visualizer · Reggio Calabria</span>
           </div>
         </div>
@@ -127,13 +129,27 @@
 
   <footer id="footer">
     <div class="footer-inner">
-      <span>© 2025 Mohammad Abdelhamid</span>
+      <span>© 2026 Mohammad Abdelhamid</span>
       <span>Architect · Designer · Visualizer · Reggio Calabria</span>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
+    // Mobile sidebar toggle
+    (function() {
+      const btn = document.createElement('button');
+      btn.id = 'menu-toggle';
+      btn.innerHTML = '<i class="bi bi-list"></i>';
+      btn.style.cssText = 'display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:#111110;color:#f0ece4;border:none;padding:0.6rem 0.8rem;font-size:1.2rem;cursor:pointer;';
+      document.body.appendChild(btn);
+      const sidebar = document.getElementById('sidebar');
+      function update() { btn.style.display = window.innerWidth <= 900 ? 'block' : 'none'; }
+      update();
+      window.addEventListener('resize', update);
+      btn.addEventListener('click', () => sidebar.classList.toggle('open'));
+      document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => { if (window.innerWidth <= 900) sidebar.classList.remove('open'); }));
+    })();
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
     const hero     = document.getElementById('projectHero');
     const heroImg  = hero.querySelector('.project-hero-img');

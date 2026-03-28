@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Ezra Hotel and Community Center - Mohammad Abdelhamid</title>
-  <meta name="description" content="Ezra Hotel and Community Center - a 200+ guest hotel in Heliopolis, Cairo.">
+  <meta name="description" content="Ezra Hotel and Community Center - a 200+ guest hotel and community landmark on a triangular plot in Heliopolis, Cairo, blending modern and Islamic architectural references.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
@@ -60,19 +60,21 @@
             <div class="meta-item"><span class="meta-label">Type</span><span>Hotel / Community</span></div>
             <div class="meta-item"><span class="meta-label">Location</span><span>Heliopolis, Cairo</span></div>
             <div class="meta-item"><span class="meta-label">Year</span><span>2023</span></div>
-            <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · AutoCAD · 3ds Max · Photoshop</span></div>
+            <div class="meta-item"><span class="meta-label">Tools</span><span>Revit · AutoCAD · 3ds Max · Photoshop · InDesign</span></div>
             <div class="meta-item"><span class="meta-label">Status</span><span>Academic Project</span></div>
+            <div class="meta-item"><span class="meta-label">Team</span><span>Mohammad Abdelhamid · Ziead Khalid · Mohammad Ashraf</span></div>
+            <div class="meta-item"><span class="meta-label">Supervisors</span><span>Dr. Mohammad Elfayoumi · Dr. Ahmed Sami</span></div>
           </div>
           <div class="project-text">
             <h2>Overview</h2>
-            <p>Ezra is a 200+ guest hotel and community center situated adjacent to Cairo International Airport, at the threshold between the historic suburb of Heliopolis and the city's expanding airport district. The project was conceived as a civic anchor, serving the traveller in transit while also belonging fully to the neighbourhood it inhabits.</p>
-            <p>The brief called for an integration of hospitality and community programming, a condition that shaped every aspect of the design.</p>
-            <h2>Organisation</h2>
-            <p>The ground floor is entirely public: an open arcade leads to a community hall, co-working space, and market stalls accessible to Heliopolis residents regardless of whether they are guests of the hotel. Above, a planted podium separates the public base from the private hotel tower.</p>
-            <p>The facade draws from Heliopolis's early twentieth-century architectural heritage: arched openings, projecting balconies, and a masonry base, reinterpreted through a contemporary lens.</p>
+            <p>Ezra is a 200+ guest hotel and community centre on an eight-feddan triangular plot in Heliopolis, Cairo — a site shaped by the convergence of two major arterial roads near Cairo International Airport. The constraints of the triangular geometry were not treated as a problem to be resolved but as the formal generator of the project: the building's massing, circulation, and public spaces all respond directly to the acute angles and shifting orientations of the site's three edges.</p>
+            <p>The project was designed as a group effort — three architects working across a programme that integrates full hotel facilities with civic amenity for the surrounding neighbourhood. A physical monochromatic model was produced alongside the digital drawings, used throughout the design process to test massing decisions and spatial relationships at scale.</p>
+            <h2>Architecture and Context</h2>
+            <p>Heliopolis carries a layered architectural identity: the suburb was founded in the early twentieth century as a cosmopolitan garden city, its streets lined with buildings that fuse European planning principles with Islamic ornamental traditions. Ezra absorbs this duality rather than choosing between its influences. The facade language draws on both — geometric screens, arched openings, and articulated balcony rails read simultaneously as contemporary and historically rooted, belonging to Heliopolis without imitating it.</p>
+            <p>The ground floor is fully public. Community spaces, an arcade, and a market open onto the street, serving Heliopolis residents independently of the hotel programme above. The hotel volumes are organised vertically, with a planted transition zone separating the civic base from the private guest levels. The aim throughout was civic legibility: a building that a Heliopolis resident can understand and enter, not merely a hotel that occupies their neighbourhood.</p>
           </div>
           <div class="project-footer">
-            <span>© 2025 Mohammad Abdelhamid</span>
+            <span>© 2026 Mohammad Abdelhamid</span>
             <span>Architect · Designer · Visualizer · Reggio Calabria</span>
           </div>
         </div>
@@ -99,13 +101,26 @@
 
   <footer id="footer">
     <div class="footer-inner">
-      <span>© 2025 Mohammad Abdelhamid</span>
+      <span>© 2026 Mohammad Abdelhamid</span>
       <span>Architect · Designer · Visualizer · Reggio Calabria</span>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
+    (function() {
+      const btn = document.createElement('button');
+      btn.id = 'menu-toggle';
+      btn.innerHTML = '<i class="bi bi-list"></i>';
+      btn.style.cssText = 'display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:#111110;color:#f0ece4;border:none;padding:0.6rem 0.8rem;font-size:1.2rem;cursor:pointer;';
+      document.body.appendChild(btn);
+      const sidebar = document.getElementById('sidebar');
+      function update() { btn.style.display = window.innerWidth <= 900 ? 'block' : 'none'; }
+      update();
+      window.addEventListener('resize', update);
+      btn.addEventListener('click', () => sidebar.classList.toggle('open'));
+      document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => { if (window.innerWidth <= 900) sidebar.classList.remove('open'); }));
+    })();
     GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, descPosition: 'none' });
     const hero     = document.getElementById('projectHero');
     const heroImg  = hero.querySelector('.project-hero-img');
