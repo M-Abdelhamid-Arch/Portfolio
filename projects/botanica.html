@@ -47,6 +47,8 @@
         <span class="bar-tag">Restoration · 2024</span>
         <span class="bar-title">Botanica</span>
         <a href="../index.html#projects" class="bar-back">← Projects</a>
+        <span class="bar-sep">|</span>
+        <a href="pelagia.html" class="bar-next">Pelagia →</a>
       </div>
     </div>
 
@@ -69,20 +71,6 @@
             <p>The proposal transforms the factory into a layered public space, part botanical garden, part community greenhouse, part cultural venue. A continuous promenade threads through the building, connecting shaded courtyards, terraced planting beds, and a flexible event hall carved from the main production hall.</p>
             <p>The spatial strategy is one of <em>coexistence</em>: old walls and new structure, ruin and growth, enclosure and openness. Light is the primary material, filtered through the restored skylights and canopy planting to create an ever-changing interior landscape.</p>
           </div>
-          <div class="project-download">
-            <div class="download-card">
-              <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-              <div class="download-text">
-                <span class="download-label">Project Documentation</span>
-                <span class="download-title">Botanica - Full Portfolio PDF</span>
-              </div>
-              <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
-            </div>
-          </div>
-          <div class="project-nav">
-            <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-            <a href="pelagia.html" class="btn-outline">Pelagia →</a>
-          </div>
           <div class="project-footer">
             <span>© 2025 Mohammad Abdelhamid</span>
             <span>Architect · Designer · Visualizer · Reggio Calabria</span>
@@ -96,6 +84,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Download strip: fixed to bottom of text column -->
+    <div class="project-download">
+      <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+      <div class="download-text">
+        <span class="download-label">Project Documentation</span>
+        <span class="download-title">Botanica · Full Project PDF</span>
+      </div>
+      <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
+    </div>
+
   </main>
 
   <footer id="footer">
@@ -152,8 +151,9 @@
       bar.style.opacity = bp; bar.classList.toggle('active', bp > 0);
       const phase2 = Math.max(0, s - COLLAPSE);
       textCol.style.transform = `translateY(${-phase2}px)`;
+      const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
+      document.querySelector('.project-download').classList.toggle('visible', phase2 >= maxScroll * 0.92);
       if (slides.length > 1) {
-        const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
         const sp = clamp01(phase2 / maxScroll);
         const idx = Math.min(Math.floor(sp * slides.length), slides.length - 1);
         if (idx !== current) goTo(idx);

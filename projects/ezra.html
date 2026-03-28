@@ -47,6 +47,8 @@
         <span class="bar-tag">Hospitality · 2023</span>
         <span class="bar-title">Ezra Hotel &amp; Community Center</span>
         <a href="../index.html#projects" class="bar-back">← Projects</a>
+        <span class="bar-sep">|</span>
+        <a href="hadana.html" class="bar-next">Hadana →</a>
       </div>
     </div>
 
@@ -69,20 +71,6 @@
             <p>The ground floor is entirely public: an open arcade leads to a community hall, co-working space, and market stalls accessible to Heliopolis residents regardless of whether they are guests of the hotel. Above, a planted podium separates the public base from the private hotel tower.</p>
             <p>The facade draws from Heliopolis's early twentieth-century architectural heritage: arched openings, projecting balconies, and a masonry base, reinterpreted through a contemporary lens.</p>
           </div>
-          <div class="project-download">
-            <div class="download-card">
-              <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-              <div class="download-text">
-                <span class="download-label">Project Documentation</span>
-                <span class="download-title">Ezra Hotel - Full Portfolio PDF</span>
-              </div>
-              <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
-            </div>
-          </div>
-          <div class="project-nav">
-            <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-            <a href="hadana.html" class="btn-outline">Hadana Kindergarten →</a>
-          </div>
           <div class="project-footer">
             <span>© 2025 Mohammad Abdelhamid</span>
             <span>Architect · Designer · Visualizer · Reggio Calabria</span>
@@ -96,6 +84,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Download strip: fixed to bottom of text column -->
+    <div class="project-download">
+      <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+      <div class="download-text">
+        <span class="download-label">Project Documentation</span>
+        <span class="download-title">Ezra Hotel · Full Project PDF</span>
+      </div>
+      <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
+    </div>
+
   </main>
 
   <footer id="footer">
@@ -152,8 +151,9 @@
       bar.style.opacity = bp; bar.classList.toggle('active', bp > 0);
       const phase2 = Math.max(0, s - COLLAPSE);
       textCol.style.transform = `translateY(${-phase2}px)`;
+      const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
+      document.querySelector('.project-download').classList.toggle('visible', phase2 >= maxScroll * 0.92);
       if (slides.length > 1) {
-        const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
         const sp = clamp01(phase2 / maxScroll);
         const idx = Math.min(Math.floor(sp * slides.length), slides.length - 1);
         if (idx !== current) goTo(idx);

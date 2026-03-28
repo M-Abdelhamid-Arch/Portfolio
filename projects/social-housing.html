@@ -47,6 +47,8 @@
         <span class="bar-tag">Residential · 2024</span>
         <span class="bar-title">Social Housing in Arghilla</span>
         <a href="../index.html#projects" class="bar-back">← Projects</a>
+        <span class="bar-sep">|</span>
+        <a href="ezra.html" class="bar-next">Ezra Hotel →</a>
       </div>
     </div>
 
@@ -68,20 +70,6 @@
             <h2>Typologies</h2>
             <p>Three housing types are proposed: single-occupancy units for young residents, family units arranged around shared courtyards, and flexible multi-generational units that can adapt over time.</p>
             <p>Shared space is the connective tissue of the design: laundry courtyards, covered terraces, communal gardens, and a civic room anchor each cluster and encourage the kind of incidental encounter that sustains neighbourhood life.</p>
-          </div>
-          <div class="project-download">
-            <div class="download-card">
-              <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
-              <div class="download-text">
-                <span class="download-label">Project Documentation</span>
-                <span class="download-title">Social Housing in Arghilla - Full Portfolio PDF</span>
-              </div>
-              <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
-            </div>
-          </div>
-          <div class="project-nav">
-            <a href="../index.html#projects" class="btn-outline">← All Projects</a>
-            <a href="ezra.html" class="btn-outline">Ezra Hotel →</a>
           </div>
           <div class="project-footer">
             <span>© 2025 Mohammad Abdelhamid</span>
@@ -105,6 +93,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Download strip: fixed to bottom of text column -->
+    <div class="project-download">
+      <div class="download-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+      <div class="download-text">
+        <span class="download-label">Project Documentation</span>
+        <span class="download-title">Social Housing in Arghilla · Full Project PDF</span>
+      </div>
+      <a href="wip.html" class="btn-outline"><i class="bi bi-download"></i> Download PDF</a>
+    </div>
+
   </main>
 
   <footer id="footer">
@@ -161,8 +160,9 @@
       bar.style.opacity = bp; bar.classList.toggle('active', bp > 0);
       const phase2 = Math.max(0, s - COLLAPSE);
       textCol.style.transform = `translateY(${-phase2}px)`;
+      const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
+      document.querySelector('.project-download').classList.toggle('visible', phase2 >= maxScroll * 0.92);
       if (slides.length > 1) {
-        const maxScroll = Math.max(1, textCol.scrollHeight - textCol.clientHeight);
         const sp = clamp01(phase2 / maxScroll);
         const idx = Math.min(Math.floor(sp * slides.length), slides.length - 1);
         if (idx !== current) goTo(idx);
